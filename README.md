@@ -1,16 +1,48 @@
-# Farther View Distance
-
-## author: `xuancat0208`
-
-### Contributors: [``xuancat0208``, ``EuSouVoce``]
+# Extended View Distance
 
 ---
 
-## How-to?
+## Description
 
-1. Open each branch, compile it's corresponding pom.xml (`mvn package`)
-    > Note: on the main _pom.xml_, on the branch 1.19 and branch 1.20 **you must** run the `mvn paper-nms:init` in order to mojang and paper mappings to work.
-2. Compile main pom.xml
-3. run `pack.bat` (needs 7zip installed)
-4. \<Optional> Rename pack.jar -> FartherViewDistance.jar
+This plugin enables the dynamic adjustment of player view distances on your server.
+It accomplishes this by modifying the server's view distance to match the largest of either the server's default setting or the individual player's configured view distance.
+This flexibility ensures an optimal viewing experience for all players on your server.
+
+- The effective view distance of the client will not exceed this value<br>
+  -    Client < Server = Server<br>
+  -    Client < Extend = Client<br>
+  -    Client > Extend = Extend
+
+## Compiling
+
+```bash
+# Clone the repository
+  git clone https://github.com/TropicalShadow/ExtendedViewDistance.git
+
+# Enter the directory
+cd ExtendedViewDistance
+
+# Build the plugin
+./gradlew shadowJar
+
+# Output: ./build/libs/ExtendedViewDistance-<version>.jar
+```
+
+## Contribution
+
+If you are looking to contribute towards this repository, please fork the repository and submit a pull request.
+
+> **Note:**<br>If you are looking to use a later version than 1.20.2 (current latest) please submit a Issue on GitHub, or reach out to me directly on Discord: RealName_123#2570
+
+## Credits
+
+> Contributors: ``xuancat0208``, ``EuSouVoce``, ``TropicalShadow``<br>
+
+> Upstream forks: ``SpigotPlugins-xuancat0208/FartherViewDistance``, ``EuSouVoce/FartherViewDistance_1.20.1``
+
+
+
+
+
+
 

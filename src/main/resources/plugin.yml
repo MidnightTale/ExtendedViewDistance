@@ -1,9 +1,9 @@
-name: FartherViewDistance
-version: ${project.version}
-main: xuan.cat.fartherviewdistance.code.ChunkIndex
+name: ExtendedViewDistance
+version: @version@
+main: club.tesseract.extendedviewdistance.core.ChunkIndex
 api-version: 1.13
 softdepend: [PlaceholderAPI]
-authors: [xuancat0208, EuSouVoce]
+authors: [TropicalShadow, xuancat0208, EuSouVoce]
 commands:
   viewdistance:
     usage: op
