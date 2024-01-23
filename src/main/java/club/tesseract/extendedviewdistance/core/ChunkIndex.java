@@ -10,6 +10,8 @@ import club.tesseract.extendedviewdistance.core.branch.v1201.Branch_1201_Minecra
 import club.tesseract.extendedviewdistance.core.branch.v1201.Branch_1201_Packet;
 import club.tesseract.extendedviewdistance.core.branch.v1202.Branch_1202_Minecraft;
 import club.tesseract.extendedviewdistance.core.branch.v1202.Branch_1202_Packet;
+import club.tesseract.extendedviewdistance.core.branch.v1204.Branch_1204_Packet;
+import club.tesseract.extendedviewdistance.core.branch.v1204.Branch_1204_Minecraft;
 import club.tesseract.extendedviewdistance.core.command.Command;
 import club.tesseract.extendedviewdistance.core.command.CommandSuggest;
 import club.tesseract.extendedviewdistance.core.data.ConfigData;
@@ -90,9 +92,20 @@ public final class ChunkIndex extends JavaPlugin {
                       ChunkIndex.branchMinecraft,
                       ChunkIndex.branchPacket
               );
-    } else if(bukkitVersion.equals("v1_20_R2")){
+    } else if(bukkitVersion.equals("v1_20_R2")) {
       branchPacket = new Branch_1202_Packet();
       branchMinecraft = new Branch_1202_Minecraft();
+      chunkServer =
+              new ChunkServer(
+                      ChunkIndex.configData,
+                      this,
+                      ViewShape.ROUND,
+                      ChunkIndex.branchMinecraft,
+                      ChunkIndex.branchPacket
+              );
+    } else if(bukkitVersion.equals("v1_20_R3")){
+      branchPacket = new Branch_1204_Packet();
+      branchMinecraft = new Branch_1204_Minecraft();
       chunkServer =
               new ChunkServer(
                       ChunkIndex.configData,

@@ -139,7 +139,7 @@ public final class ChunkServer {
     this.multithreadedService.schedule(
             () -> {
               Thread thread = Thread.currentThread();
-              thread.setName("FartherViewDistance View thread");
+              thread.setName("ExtendedViewDistance View thread");
               thread.setPriority(3);
               this.threadsSet.add(thread);
               this.runView(canRun);
@@ -156,7 +156,7 @@ public final class ChunkServer {
               () -> {
                 Thread thread = Thread.currentThread();
                 thread.setName(
-                        "FartherViewDistance AsyncTick thread #" + threadNumber
+                        "ExtendedViewDistance AsyncTick thread #" + threadNumber
                 );
                 thread.setPriority(2);
                 this.threadsSet.add(thread);

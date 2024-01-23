@@ -32,6 +32,7 @@ dependencies {
     // 1.20.*
     implementation(project(":branch_1_20_1", configuration = "reobf"))
     implementation(project(":branch_1_20_2", configuration = "reobf"))
+    implementation(project(":branch_1_20_4", configuration = "reobf"))
 
     // PAPI
     compileOnly("me.clip:placeholderapi:2.11.5")
