@@ -7,7 +7,6 @@ import club.tesseract.extendedviewdistance.api.event.PlayerSendExtendChunkEvent;
 import club.tesseract.extendedviewdistance.core.data.*;
 import club.tesseract.extendedviewdistance.core.data.viewmap.ViewMap;
 import club.tesseract.extendedviewdistance.core.data.viewmap.ViewShape;
-import club.tesseract.extendedviewdistance.core.util.SchedulerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -15,6 +14,8 @@ import org.bukkit.World;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -41,7 +42,7 @@ public final class ChunkServer {
   public final LangFiles lang = new LangFiles();
   private final ConfigData configData;
   private final Plugin plugin;
-//  private final Set<BukkitTask> bukkitTasks = ConcurrentHashMap.newKeySet();
+  private final Set<BukkitTask> bukkitTasks = ConcurrentHashMap.newKeySet();
   private final NetworkTraffic serverNetworkTraffic = new NetworkTraffic();
   private final Map<World, NetworkTraffic> worldsNetworkTraffic = new ConcurrentHashMap<>();
   private final AtomicInteger serverGeneratedChunk = new AtomicInteger(0);
@@ -66,17 +67,14 @@ public final class ChunkServer {
     this.branchMinecraft = branchMinecraft;
     this.branchPacket = branchPacket;
     this.viewShape = viewShape;
-//    BukkitScheduler scheduler = Bukkit.getScheduler();
-//    this.bukkitTasks.add(scheduler.runTaskTimer(plugin, this::tickSync, 0, 1));
-//    this.bukkitTasks.add(
-//            scheduler.runTaskTimerAsynchronously(plugin, this::tickAsync, 0, 1)
-//    );
-//    this.bukkitTasks.add(
-//            scheduler.runTaskTimerAsynchronously(plugin, this::tickReport, 0, 20)
-//    );
-    SchedulerUtil.runTaskTimer(plugin, this::tickSync, 1, 1);
-    SchedulerUtil.runTaskTimerAsynchronously(plugin, this::tickAsync, 1, 1);
-    SchedulerUtil.runTaskTimerAsynchronously(plugin, this::tickReport, 1, 20);
+    BukkitScheduler scheduler = Bukkit.getScheduler();
+    this.bukkitTasks.add(scheduler.runTaskTimer(plugin, this::tickSync, 0, 1));
+    this.bukkitTasks.add(
+            scheduler.runTaskTimerAsynchronously(plugin, this::tickAsync, 0, 1)
+    );
+    this.bukkitTasks.add(
+            scheduler.runTaskTimerAsynchronously(plugin, this::tickReport, 0, 20)
+    );
     this.reloadMultithreaded();
   }
 
@@ -799,7 +797,11 @@ public final class ChunkServer {
    */
   void close() {
     running = false;
-    SchedulerUtil.cancelTasks(plugin);
+
+    for (BukkitTask task : this.bukkitTasks) {
+      task.cancel();
+    }
+
     multithreadedService.shutdown();
   }
 }
