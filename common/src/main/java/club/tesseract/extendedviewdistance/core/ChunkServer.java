@@ -7,6 +7,9 @@ import club.tesseract.extendedviewdistance.api.event.PlayerSendExtendChunkEvent;
 import club.tesseract.extendedviewdistance.core.data.*;
 import club.tesseract.extendedviewdistance.core.data.viewmap.ViewMap;
 import club.tesseract.extendedviewdistance.core.data.viewmap.ViewShape;
+import me.nahu.scheduler.wrapper.WrappedScheduler;
+import me.nahu.scheduler.wrapper.WrappedSchedulerBuilder;
+import me.nahu.scheduler.wrapper.task.WrappedTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -41,8 +44,8 @@ public final class ChunkServer {
   public final Set<Thread> threadsSet = ConcurrentHashMap.newKeySet();
   public final LangFiles lang = new LangFiles();
   private final ConfigData configData;
-  private final Plugin plugin;
-  private final Set<BukkitTask> bukkitTasks = ConcurrentHashMap.newKeySet();
+  private Plugin plugin;
+  private final Set<WrappedTask> wrappedTasks = ConcurrentHashMap.newKeySet();
   private final NetworkTraffic serverNetworkTraffic = new NetworkTraffic();
   private final Map<World, NetworkTraffic> worldsNetworkTraffic = new ConcurrentHashMap<>();
   private final AtomicInteger serverGeneratedChunk = new AtomicInteger(0);
@@ -67,13 +70,14 @@ public final class ChunkServer {
     this.branchMinecraft = branchMinecraft;
     this.branchPacket = branchPacket;
     this.viewShape = viewShape;
-    BukkitScheduler scheduler = Bukkit.getScheduler();
-    this.bukkitTasks.add(scheduler.runTaskTimer(plugin, this::tickSync, 0, 1));
-    this.bukkitTasks.add(
-            scheduler.runTaskTimerAsynchronously(plugin, this::tickAsync, 0, 1)
+    final WrappedSchedulerBuilder schedulerBuilder = WrappedSchedulerBuilder.builder().plugin(plugin);
+    final WrappedScheduler scheduler = schedulerBuilder.build();
+    this.wrappedTasks.add(scheduler.runTaskTimer(this::tickSync, 1, 1));
+    this.wrappedTasks.add(
+            scheduler.runTaskTimerAsynchronously(this::tickAsync, 1, 1)
     );
-    this.bukkitTasks.add(
-            scheduler.runTaskTimerAsynchronously(plugin, this::tickReport, 0, 20)
+    this.wrappedTasks.add(
+            scheduler.runTaskTimerAsynchronously(this::tickReport, 1, 20)
     );
     this.reloadMultithreaded();
   }
@@ -798,7 +802,7 @@ public final class ChunkServer {
   void close() {
     running = false;
 
-    for (BukkitTask task : this.bukkitTasks) {
+    for (WrappedTask task : this.wrappedTasks) {
       task.cancel();
     }
 

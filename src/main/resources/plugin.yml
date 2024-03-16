@@ -4,6 +4,7 @@ main: club.tesseract.extendedviewdistance.core.ChunkIndex
 api-version: 1.13
 softdepend: [PlaceholderAPI]
 authors: [TropicalShadow, xuancat0208, EuSouVoce]
+folia-supported: true
 commands:
   viewdistance:
     usage: op

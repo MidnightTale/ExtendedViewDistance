@@ -33,6 +33,7 @@ dependencies {
     implementation(project(":branch_1_20_1", configuration = "reobf"))
     implementation(project(":branch_1_20_2", configuration = "reobf"))
     implementation(project(":branch_1_20_4", configuration = "reobf"))
+    implementation(files("/home/nexus/IdeaProjects/ExtendedViewDistance/common/src/main/java/club/tesseract/extendedviewdistance/core/lib/folia-scheduler-wrapper-0.0.3-all.jar"))
 
     // PAPI
     compileOnly("me.clip:placeholderapi:2.11.5")
@@ -56,6 +57,7 @@ tasks {
     }
 
     shadowJar {
+        relocate("com.github.NahuLD", "club.tesseract.extendedviewdistance.libs")
         archiveBaseName.set(project.name)
         archiveClassifier.set("")
     }
