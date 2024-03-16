@@ -566,12 +566,16 @@ public final class Branch_1204_ChunkRegionLoader {
     // 實體方塊
     ListTag blockEntitiesNBT = new ListTag();
     for (BlockPos blockPos : chunk.getBlockEntitiesPos()) {
-      CompoundTag blockEntity = chunk.getBlockEntityNbtForSaving(blockPos);
-      if (blockEntity != null) {
-        blockEntitiesNBT.add(blockEntity);
+      try {
+        CompoundTag blockEntity = chunk.getBlockEntityNbtForSaving(blockPos);
+        if (blockEntity != null) {
+          blockEntitiesNBT.add(blockEntity);
+        }
+      } catch (NullPointerException ignored) {
       }
     }
     nbt.put("block_entities", blockEntitiesNBT);
+
 
     if (chunk.getStatus().getChunkType() == ChunkStatus.ChunkType.PROTOCHUNK) {}
 
