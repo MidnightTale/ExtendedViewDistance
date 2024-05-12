@@ -2,16 +2,18 @@ package club.tesseract.extendedviewdistance.core;
 
 import club.tesseract.extendedviewdistance.api.branch.BranchMinecraft;
 import club.tesseract.extendedviewdistance.api.branch.BranchPacket;
-import club.tesseract.extendedviewdistance.core.branch.v1182.Branch_1182_Minecraft;
-import club.tesseract.extendedviewdistance.core.branch.v1182.Branch_1182_Packet;
-import club.tesseract.extendedviewdistance.core.branch.v1194.Branch_1194_Minecraft;
-import club.tesseract.extendedviewdistance.core.branch.v1194.Branch_1194_Packet;
-import club.tesseract.extendedviewdistance.core.branch.v1201.Branch_1201_Minecraft;
-import club.tesseract.extendedviewdistance.core.branch.v1201.Branch_1201_Packet;
-import club.tesseract.extendedviewdistance.core.branch.v1202.Branch_1202_Minecraft;
-import club.tesseract.extendedviewdistance.core.branch.v1202.Branch_1202_Packet;
-import club.tesseract.extendedviewdistance.core.branch.v1204.Branch_1204_Packet;
-import club.tesseract.extendedviewdistance.core.branch.v1204.Branch_1204_Minecraft;
+// import club.tesseract.extendedviewdistance.core.branch.v1182.Branch_1182_Minecraft;
+// import club.tesseract.extendedviewdistance.core.branch.v1182.Branch_1182_Packet;
+//import club.tesseract.extendedviewdistance.core.branch.v1194.Branch_1194_Minecraft;
+//import club.tesseract.extendedviewdistance.core.branch.v1194.Branch_1194_Packet;
+//import club.tesseract.extendedviewdistance.core.branch.v1201.Branch_1201_Minecraft;
+//import club.tesseract.extendedviewdistance.core.branch.v1201.Branch_1201_Packet;
+//import club.tesseract.extendedviewdistance.core.branch.v1202.Branch_1202_Minecraft;
+//import club.tesseract.extendedviewdistance.core.branch.v1202.Branch_1202_Packet;
+//import club.tesseract.extendedviewdistance.core.branch.v1204.Branch_1204_Packet;
+//import club.tesseract.extendedviewdistance.core.branch.v1204.Branch_1204_Minecraft;
+import club.tesseract.extendedviewdistance.core.branch.v1206.Branch_1206_Packet;
+import club.tesseract.extendedviewdistance.core.branch.v1206.Branch_1206_Minecraft;
 import club.tesseract.extendedviewdistance.core.command.Command;
 import club.tesseract.extendedviewdistance.core.command.CommandSuggest;
 import club.tesseract.extendedviewdistance.core.data.ConfigData;
@@ -56,56 +58,69 @@ public final class ChunkIndex extends JavaPlugin {
     // 1.15    bukkitVersionOld.matches("^1\\.15\\D.*$")
     // 1.16    bukkitVersionOld.matches("^1\\.16\\D.*$")
     // 1.17    bukkitVersionOld.matches("^1\\.17\\D.*$")
-    if (bukkitVersion.equals("v1_18_R1")) {
-      // 1.18.2
-      branchPacket = new Branch_1182_Packet();
-      branchMinecraft = new Branch_1182_Minecraft();
-      chunkServer =
-        new ChunkServer(
-          ChunkIndex.configData,
-          this,
-          ViewShape.ROUND,
-          ChunkIndex.branchMinecraft,
-          ChunkIndex.branchPacket
-        );
-    } else if (bukkitVersionOld.matches("^1\\.19\\D.*$")) {
-      // 1.19.4
-      branchPacket = new Branch_1194_Packet();
-      branchMinecraft = new Branch_1194_Minecraft();
-      chunkServer =
-        new ChunkServer(
-          ChunkIndex.configData,
-          this,
-          ViewShape.ROUND,
-          ChunkIndex.branchMinecraft,
-          ChunkIndex.branchPacket
-        );
-    } else if (bukkitVersion.equals("v1_20_R1")) {
-      // 1.20.1
-      branchPacket = new Branch_1201_Packet();
-      branchMinecraft = new Branch_1201_Minecraft();
-      chunkServer =
-              new ChunkServer(
-                      ChunkIndex.configData,
-                      this,
-                      ViewShape.ROUND,
-                      ChunkIndex.branchMinecraft,
-                      ChunkIndex.branchPacket
-              );
-    } else if(bukkitVersion.equals("v1_20_R2")) {
-      branchPacket = new Branch_1202_Packet();
-      branchMinecraft = new Branch_1202_Minecraft();
-      chunkServer =
-              new ChunkServer(
-                      ChunkIndex.configData,
-                      this,
-                      ViewShape.ROUND,
-                      ChunkIndex.branchMinecraft,
-                      ChunkIndex.branchPacket
-              );
-    } else if(bukkitVersion.equals("v1_20_R3")){
-      branchPacket = new Branch_1204_Packet();
-      branchMinecraft = new Branch_1204_Minecraft();
+    // if (bukkitVersion.equals("v1_18_R1")) {
+    //   // 1.18.2
+    //   branchPacket = new Branch_1182_Packet();
+    //   branchMinecraft = new Branch_1182_Minecraft();
+    //   chunkServer =
+    //     new ChunkServer(
+    //       ChunkIndex.configData,
+    //       this,
+    //       ViewShape.ROUND,
+    //       ChunkIndex.branchMinecraft,
+    //       ChunkIndex.branchPacket
+    //     );
+//    // } else
+//    if (bukkitVersionOld.matches("^1\\.19\\D.*$")) {
+//      // 1.19.4
+//      branchPacket = new Branch_1194_Packet();
+//      branchMinecraft = new Branch_1194_Minecraft();
+//      chunkServer =
+//        new ChunkServer(
+//          ChunkIndex.configData,
+//          this,
+//          ViewShape.ROUND,
+//          ChunkIndex.branchMinecraft,
+//          ChunkIndex.branchPacket
+//        );
+//    } else if (bukkitVersion.equals("v1_20_R1")) {
+//      // 1.20.1
+//      branchPacket = new Branch_1201_Packet();
+//      branchMinecraft = new Branch_1201_Minecraft();
+//      chunkServer =
+//              new ChunkServer(
+//                      ChunkIndex.configData,
+//                      this,
+//                      ViewShape.ROUND,
+//                      ChunkIndex.branchMinecraft,
+//                      ChunkIndex.branchPacket
+//              );
+//    } else if(bukkitVersion.equals("v1_20_R2")) {
+//      branchPacket = new Branch_1202_Packet();
+//      branchMinecraft = new Branch_1202_Minecraft();
+//      chunkServer =
+//              new ChunkServer(
+//                      ChunkIndex.configData,
+//                      this,
+//                      ViewShape.ROUND,
+//                      ChunkIndex.branchMinecraft,
+//                      ChunkIndex.branchPacket
+//              );
+//    } else if(bukkitVersion.equals("v1_20_R3")){
+//      branchPacket = new Branch_1204_Packet();
+//      branchMinecraft = new Branch_1204_Minecraft();
+//      chunkServer =
+//              new ChunkServer(
+//                      ChunkIndex.configData,
+//                      this,
+//                      ViewShape.ROUND,
+//                      ChunkIndex.branchMinecraft,
+//                      ChunkIndex.branchPacket
+//              );
+//      } else
+        if (bukkitVersionOld.contains("1.20.6-R0.1")) {
+      branchPacket = new Branch_1206_Packet();
+      branchMinecraft = new Branch_1206_Minecraft();
       chunkServer =
               new ChunkServer(
                       ChunkIndex.configData,

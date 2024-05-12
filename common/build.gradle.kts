@@ -10,7 +10,7 @@ repositories {
 dependencies {
     compileOnly("com.destroystokyo.paper:paper-api:1.14.4-R0.1-SNAPSHOT")
     //compileOnly("org.spigotmc:spigot-api:1.14.4-R0.1-SNAPSHOT")
-    implementation(files("/home/nexus/IdeaProjects/ExtendedViewDistance/common/src/main/java/club/tesseract/extendedviewdistance/core/lib/folia-scheduler-wrapper-0.0.3-all.jar"))
+    implementation(files("C:/Users/nexus/IdeaProjects/ExtendedViewDistance/common/src/main/java/club/tesseract/extendedviewdistance/lib/folia-scheduler-wrapper-0.0.3-all.jar"))
 
     // Messaging Utils
     compileOnly("net.md-5:bungeecord-chat:1.16-R0.4")

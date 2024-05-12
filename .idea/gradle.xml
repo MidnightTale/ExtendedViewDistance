@@ -5,18 +5,15 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../Gradle/gradle-8.7" />
+        <option name="gradleJvm" value="zulu-21" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/branch/1_14" />
             <option value="$PROJECT_DIR$/branch/1_15" />
             <option value="$PROJECT_DIR$/branch/1_16" />
-            <option value="$PROJECT_DIR$/branch/1_17_1" />
-            <option value="$PROJECT_DIR$/branch/1_18_2" />
-            <option value="$PROJECT_DIR$/branch/1_19_4" />
-            <option value="$PROJECT_DIR$/branch/1_20_1" />
-            <option value="$PROJECT_DIR$/branch/1_20_2" />
-            <option value="$PROJECT_DIR$/branch/1_20_4" />
+            <option value="$PROJECT_DIR$/branch/1_20_6" />
             <option value="$PROJECT_DIR$/common" />
           </set>
         </option>
