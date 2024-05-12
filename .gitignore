@@ -43,3 +43,4 @@ bin/
 run/
 
 .paper-nms
+/common/src/main/java/club/tesseract/extendedviewdistance/lib/
